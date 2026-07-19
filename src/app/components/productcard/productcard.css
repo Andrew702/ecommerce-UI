@@ -1,0 +1,53 @@
+.fading {
+  opacity: 0 !important;
+}
+
+.shopverse-choice {
+  position: relative;
+  overflow: hidden;
+
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 215, 0, 0.35),
+    inset 0 0 12px rgba(255, 215, 0, 0.08);
+
+  transition:
+    box-shadow 220ms ease,
+    transform 180ms ease;
+}
+
+/* Subtle hover effect */
+.shopverse-choice:hover {
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 215, 0, 0.5),
+    inset 0 0 18px rgba(255, 215, 0, 0.12);
+
+  transform: translateY(-1px);
+}
+
+::before {
+  content: '';
+
+  position: absolute;
+  top: -100%;
+  left: -120%;
+
+  width: 80%;
+  height: 300%;
+
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.18) 50%,
+    transparent 100%
+  );
+
+  transform: rotate(25deg);
+
+  transition: left 700ms ease;
+
+  pointer-events: none;
+}
+
+:hover::before {
+  left: 160%;
+}

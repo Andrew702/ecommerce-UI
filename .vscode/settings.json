@@ -1,0 +1,3 @@
+{
+  "copyCatBundler.additionalIgnorePatterns": ["src\\styles.css"]
+}

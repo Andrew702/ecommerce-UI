@@ -1,0 +1,64 @@
+<div
+  class="card"
+  [class.shopverse-choice]="ShopVerseChoice"
+  style="width: 280px; flex-shrink: 0; cursor: pointer; overflow: hidden"
+  (click)="goToProduct()"
+>
+  <!-- Product Image -->
+  <img
+    [src]="product.image"
+    alt="{{ product.title }}"
+    style="
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      display: block;
+    "
+  />
+
+  <!-- Card Body -->
+  <div style="padding: 16px">
+    <h3
+      style="
+        font-family: var(--font-display);
+        font-size: var(--text-base);
+        color: var(--color-text-base);
+        margin-bottom: 4px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      "
+    >
+      {{ product.title }}
+    </h3>
+    <p
+      style="
+        font-size: var(--text-sm);
+        color: var(--color-text-muted);
+        margin-bottom: 0;
+      "
+    >
+      {{ product.categoryName }}{{ product.brandName ? ' · ' + product.brandName : '' }}
+    </p>
+    <p
+      style="
+        font-size: var(--text-xs);
+        color: var(--color-accent);
+        margin-bottom: 8px;
+      "
+    >
+      ★ {{ product.averageRating }} ({{ product.reviewCount }})
+    </p>
+    <p
+      style="
+        font-size: var(--text-sm);
+        font-weight: 600;
+        color: var(--color-brand);
+        margin-bottom: 16px;
+      "
+    >
+      ${{ product.price }}
+    </p>
+    <button class="btn-primary w-full" (click)="addToCart($event)">Add to Cart</button>
+  </div>
+</div>

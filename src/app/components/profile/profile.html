@@ -1,0 +1,43 @@
+<div class="profile-container">
+  @if (currentUser()) {
+    <div class="profile-card">
+      <div class="profile-header">
+        <div class="avatar">{{ currentUser()?.userName?.charAt(0)?.toUpperCase() || 'U' }}</div>
+        <h2>User Profile</h2>
+        <p>Personal Details</p>
+      </div>
+
+      <div class="profile-body">
+        <div class="detail-row">
+          <i class="bi bi-person-fill"></i>
+          <div>
+            <span class="label">Full Name</span>
+            <span>{{ currentUser()?.userName }}</span>
+          </div>
+        </div>
+
+        <div class="detail-row">
+          <i class="bi bi-envelope-fill"></i>
+          <div>
+            <span class="label">Email Address</span>
+            <span>{{ currentUser()?.email }}</span>
+          </div>
+        </div>
+
+        <div class="detail-row">
+          <i class="bi bi-telephone-fill"></i>
+          <div>
+            <span class="label">Phone Number</span>
+            <span>{{ currentUser()?.phone || 'Not Provided' }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  } @else {
+    <div class="profile-card">
+      <i class="bi bi-lock-fill"></i>
+      <h3>Access Restricted</h3>
+      <p>Please sign in to view your profile details.</p>
+    </div>
+  }
+</div>

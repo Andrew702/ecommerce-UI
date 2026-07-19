@@ -1,0 +1,23 @@
+<section class="offers-bar">
+  @for (offer of offers; track $index) {
+    <a class="offer-card" routerLink="/main/shop">
+      <img [src]="offer.imageUrl" [alt]="offer.label" class="offer-card__image" />
+
+      <div class="offer-card__overlay"></div>
+
+      <a class="offer-card__content">
+        <span class="offer-card__label">
+          {{ offer.label }}
+        </span>
+
+        <p class="offer-card__detail">
+          {{ offer.detail }}
+        </p>
+
+        @if (offer.code) {
+          <span class="offer-card__code"> Use code: {{ offer.code }} </span>
+        }
+      </a>
+    </a>
+  }
+</section>

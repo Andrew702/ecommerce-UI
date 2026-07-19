@@ -1,0 +1,28 @@
+<!--
+  The container for all active notifications.
+  Place this component once in your app's root template (e.g. app.component.html)
+  so it's always visible regardless of the current route.
+-->
+<div class="notifications-container">
+  <!--
+    *ngFor loops over the notifications list.
+    trackBy: trackById — tells Angular to use the ID to track items (see component for why this matters).
+  -->
+
+  @for (notification of notifications(); track $index) {
+    <div class="notification notification--{{ notification.type }}" role="alert" aria-live="polite">
+      <!-- Message text -->
+      <span class="notification__message">{{ notification.message }}</span>
+
+      <!-- Dismiss button -->
+      <button
+        class="notification__dismiss"
+        type="button"
+        aria-label="Dismiss notification"
+        (click)="dismiss(notification.id)"
+      >
+        &times;
+      </button>
+    </div>
+  }
+</div>

@@ -1,0 +1,38 @@
+<div class="orders-card">
+  <div class="orders-header">
+    <h2>Order History</h2>
+  </div>
+  <div class="orders-body">
+    @for (order of orders(); track order.id) {
+      <div class="order-item">
+        <div class="order-info">
+          <div class="order-id">Order #{{ order.id }}</div>
+          <div class="order-date">{{ order.date | date: 'short' }}</div>
+          <div class="order-status" style="font-size: var(--text-xs); color: var(--color-brand);">Status: {{ order.status }}</div>
+        </div>
+        <div class="order-items">
+          @for (item of order.orderItems; track item.id) {
+            <div class="item">
+              <img [src]="item.productImage" [alt]="item.productTitle" class="item-image" />
+              <div class="item-details">
+                <div class="item-name">{{ item.productTitle }}</div>
+                <div class="item-qty">Qty: {{ item.quantity }}</div>
+              </div>
+              <div class="item-price">${{ item.unitPrice }}</div>
+            </div>
+          }
+        </div>
+        <div class="order-total">
+          <span>Total:</span>
+          <span class="total-amount">${{ order.total }}</span>
+        </div>
+      </div>
+    }
+
+    @if (orders().length === 0) {
+      <div class="empty-state">
+        <p>No orders yet</p>
+      </div>
+    }
+  </div>
+</div>

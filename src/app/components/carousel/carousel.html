@@ -1,0 +1,113 @@
+<!-- Main Carousel Container with crossfade animation -->
+<div
+  id="fullWidthCarousel"
+  class="carousel slide carousel-fade vh-100"
+  data-bs-ride="carousel"
+  data-bs-interval="4000"
+  data-bs-pause="false"
+>
+  <!-- Indicators (Small lines at the bottom center) -->
+  <div class="carousel-indicators">
+    <button
+      type="button"
+      data-bs-target="#fullWidthCarousel"
+      data-bs-slide-to="0"
+      class="active"
+      aria-current="true"
+      aria-label="Slide 1"
+    ></button>
+    <button
+      type="button"
+      data-bs-target="#fullWidthCarousel"
+      data-bs-slide-to="1"
+      aria-label="Slide 2"
+    ></button>
+    <button
+      type="button"
+      data-bs-target="#fullWidthCarousel"
+      data-bs-slide-to="2"
+      aria-label="Slide 3"
+    ></button>
+  </div>
+
+  <!-- Wrapper for the slides -->
+  <div class="carousel-inner h-100">
+    <!-- Slide 1 -->
+    <!-- Using bg-dark and bg-image to simulate full-screen coverage with varying content -->
+    <div
+      class="carousel-item active h-100 bg-dark text-white"
+      style="
+        background: url('images/videoframe_5495.png') no-repeat center center;
+        background-size: cover;
+      "
+    >
+      <!-- Content Overlay -->
+      <div
+        class="carousel-caption d-flex flex-column align-items-center justify-content-center h-100 text-center"
+      >
+        <h1 class="display-3 fw-bold">FIND YOUR PERFECT STYLE</h1>
+        <p class="lead mb-4">Explore our new Autumn Collection today.</p>
+        <!-- The required Shop Now Button -->
+        <a routerLink="/main/shop" class="btn btn-primary btn-lg px-5 shadow">Shop Now</a>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div
+      class="carousel-item h-100 bg-secondary text-white"
+      style="
+        background: url('images/summeressentials.jpg') no-repeat center center;
+        background-size: cover;
+      "
+    >
+      <!-- Content Overlay -->
+      <div
+        class="carousel-caption d-flex flex-column align-items-center justify-content-center h-100 text-center"
+      >
+        <h1 class="display-3 fw-bold">SUMMER ESSENTIALS</h1>
+        <p class="lead mb-4">Up to 40% off on all summer wear.</p>
+        <!-- The required Shop Now Button -->
+        <a routerLink="/main/shop" class="btn btn-primary btn-lg px-5 shadow">Shop Now</a>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div
+      class="carousel-item h-100 bg-primary text-white"
+      style="
+        background: url('/images/accessories.webp') no-repeat center center;
+        background-size: cover;
+      "
+    >
+      <!-- Content Overlay -->
+      <div
+        class="carousel-caption d-flex flex-column align-items-center justify-content-center h-100 text-center"
+      >
+        <h1 class="display-3 fw-bold">NEW ACCESSORIES</h1>
+        <p class="lead mb-4">Complete your look with our latest arrivals.</p>
+        <!-- The required Shop Now Button -->
+        <a routerLink="/main/shop" class="btn btn-primary btn-lg px-5 shadow">Shop Now</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Controls (Prev/Next arrows) -->
+  <button
+    class="carousel-control-prev"
+    type="button"
+    data-bs-target="#fullWidthCarousel"
+    data-bs-slide="prev"
+  >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button
+    class="carousel-control-next"
+    type="button"
+    data-bs-target="#fullWidthCarousel"
+    data-bs-slide="next"
+  >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>

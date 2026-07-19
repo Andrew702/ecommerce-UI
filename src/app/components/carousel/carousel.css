@@ -1,0 +1,86 @@
+/* Full carousel smooth fade effect */
+.carousel.carousel-fade .carousel-item {
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+  transform: none;
+}
+
+/* Active slide */
+.carousel.carousel-fade .carousel-item.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+/* During transition */
+.carousel.carousel-fade .carousel-item-next.carousel-item-start,
+.carousel.carousel-fade .carousel-item-prev.carousel-item-end {
+  opacity: 1;
+  z-index: 1;
+}
+
+.carousel.carousel-fade .active.carousel-item-start,
+.carousel.carousel-fade .active.carousel-item-end {
+  opacity: 0;
+  z-index: 0;
+}
+
+/* Dark overlay for better text readability */
+.carousel-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 0;
+}
+
+/* Keep caption above overlay */
+.carousel-caption {
+  z-index: 2;
+  position: relative;
+}
+
+/* Animate text content */
+.carousel-caption h1,
+.carousel-caption p,
+.carousel-caption a {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 1s ease forwards;
+}
+
+/* Delay animations slightly */
+.carousel-caption p {
+  animation-delay: 0.3s;
+}
+
+.carousel-caption a {
+  animation-delay: 0.6s;
+}
+
+/* Fade up keyframes */
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Optional: Better indicator styling */
+.carousel-indicators button {
+  width: 40px;
+  height: 4px;
+  border-radius: 20px;
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+.carousel-indicators .active {
+  opacity: 1;
+  transform: scaleX(1.2);
+}
+
+/* Smooth control buttons */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.6));
+}

@@ -1,0 +1,32 @@
+<!-- categories-grid.component.html -->
+
+<!--
+  We use a simple CSS grid via a utility class.
+  Each card is looped from the `categories` array in the component.
+  *ngFor is Angular's way of repeating an element for each item in a list.
+-->
+
+<section class="categories-section">
+  <h2 class="categories-title">Shop by Category</h2>
+
+  <div class="categories-grid">
+    <!--
+      *ngFor loops over each item in the `categories` array.
+      `category` is the local variable name for each item.
+    -->
+
+    @for (category of categories; track $index) {
+      <a class="category-card" routerLink="/main/shop">
+        <div class="category-card__image-wrapper">
+          <img [src]="category.imageUrl" [alt]="category.title" class="category-card__image" />
+        </div>
+
+        <div class="category-card__body">
+          <h3 class="category-card__title">{{ category.title }}</h3>
+          <p class="category-card__subtitle">{{ category.subtitle }}</p>
+          <span class="category-card__cta">Shop Now →</span>
+        </div>
+      </a>
+    }
+  </div>
+</section>

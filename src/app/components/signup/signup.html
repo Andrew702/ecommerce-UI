@@ -1,0 +1,121 @@
+<div
+  class="min-h-screen flex items-center justify-center px-4"
+  style="background-color: var(--color-surface-muted)"
+>
+  <div class="card w-full p-10" style="max-width: 460px">
+    <!-- Header -->
+    <div class="text-center mb-8">
+      <h3 style="font-family: var(--font-display); color: var(--color-text-base)">
+        Create Account
+      </h3>
+      <p class="mt-1" style="color: var(--color-text-muted); font-size: var(--text-sm)">
+        Join ShopVerse Now
+      </p>
+    </div>
+
+    <form [formGroup]="signupForm" (submit)="onSignup()">
+      <!-- Full Name -->
+      <div class="mb-3">
+        <label style="font-size: var(--text-sm); font-weight: 500; color: var(--color-text-base)">
+          Full Name
+        </label>
+        <input type="text" class="mt-1" formControlName="name" placeholder="Enter your name" />
+
+        @if (signupForm.controls.name.dirty && signupForm.controls.name.invalid) {
+          <p class="mt-1" style="font-size: var(--text-xs); color: #ef4444">
+            Name must be at least 3 characters
+          </p>
+        }
+      </div>
+
+      <!-- Email -->
+      <div class="mb-3">
+        <label style="font-size: var(--text-sm); font-weight: 500; color: var(--color-text-base)">
+          Email
+        </label>
+        <input type="email" class="mt-1" formControlName="email" placeholder="Enter your email" />
+
+        @if (signupForm.controls.email.dirty && signupForm.controls.email.invalid) {
+          <p class="mt-1" style="font-size: var(--text-xs); color: #ef4444">Enter a valid email</p>
+        }
+      </div>
+      <!-- phone -->
+      <div class="mb-3">
+        <label style="font-size: var(--text-sm); font-weight: 500; color: var(--color-text-base)">
+          Phone
+        </label>
+        <input
+          type="text"
+          class="mt-1"
+          formControlName="phone"
+          placeholder="Enter your phone number"
+        />
+
+        @if (signupForm.controls.phone.dirty && signupForm.controls.phone.invalid) {
+          <p class="mt-1" style="font-size: var(--text-xs); color: #ef4444">
+            Enter a valid phone number
+          </p>
+        }
+      </div>
+
+      <!-- Password -->
+      <div class="mb-3">
+        <label style="font-size: var(--text-sm); font-weight: 500; color: var(--color-text-base)">
+          Password
+        </label>
+        <input
+          type="password"
+          class="mt-1"
+          formControlName="password"
+          placeholder="Enter your password"
+        />
+
+        @if (signupForm.controls.password.dirty && signupForm.controls.password.invalid) {
+          <p class="mt-1" style="font-size: var(--text-xs); color: #ef4444">
+            Password must be at least 6 characters
+          </p>
+        }
+      </div>
+
+      <!-- Confirm Password -->
+      <div class="mb-6">
+        <label style="font-size: var(--text-sm); font-weight: 500; color: var(--color-text-base)">
+          Confirm Password
+        </label>
+        <input
+          type="password"
+          class="mt-1"
+          formControlName="confirmPassword"
+          placeholder="Confirm your password"
+        />
+
+        @if (
+          signupForm.controls.confirmPassword.dirty &&
+          signupForm.value.password !== signupForm.value.confirmPassword
+        ) {
+          <p class="mt-1" style="font-size: var(--text-xs); color: #ef4444">
+            Passwords do not match
+          </p>
+        }
+      </div>
+
+      <!-- Sign Up Button -->
+      <button
+        type="submit"
+        class="btn-primary w-full"
+        [disabled]="
+          signupForm.invalid || signupForm.value.password !== signupForm.value.confirmPassword
+        "
+      >
+        Sign Up
+      </button>
+
+    </form>
+
+    <!-- Login Link -->
+    <p class="text-center mt-6" style="font-size: var(--text-sm); color: var(--color-text-muted)">
+      Already have an account?
+      <a routerLink="/auth/login" style="font-weight: 500; text-decoration: none"> Login </a>
+    </p>
+  </div>
+</div>

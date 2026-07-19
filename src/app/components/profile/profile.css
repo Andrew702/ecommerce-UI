@@ -1,0 +1,192 @@
+/* ── Layout ─────────────────────────────────────────── */
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 0rem 1.5rem;
+  background-color: var(--color-surface-muted);
+  min-height: 75vh;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.profile-card {
+  width: 100%;
+  max-width: 340px;
+  flex-shrink: 0;
+  background-color: var(--color-surface-elevated);
+  border: 1px solid var(--color-surface-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+
+.profile-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--color-brand);
+  box-shadow: var(--shadow-hover);
+}
+
+/* ── Profile Header ──────────────────────────────────── */
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 3rem 2rem 2rem;
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-surface-border);
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: var(--color-brand-light);
+  border: 2px solid var(--color-surface-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--color-brand-dark);
+  box-shadow: var(--shadow-card);
+  margin-bottom: 1.25rem;
+  transition: transform 220ms ease;
+}
+
+.profile-card:hover .avatar {
+  transform: scale(1.05);
+}
+
+.profile-header h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: 600;
+  margin: 0;
+  color: var(--color-text-base);
+}
+
+.profile-header p {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin: 0.35rem 0 0;
+}
+
+/* ── Profile Body ────────────────────────────────────── */
+.profile-body {
+  padding: 2.25rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.detail-row {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1rem 1.25rem;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-surface-border);
+  border-radius: var(--radius-md);
+  transition: transform 220ms ease, border-color 220ms ease, background-color 220ms ease;
+}
+
+.detail-row:hover {
+  transform: translateX(4px);
+  border-color: var(--color-brand);
+  background-color: var(--color-brand-light);
+}
+
+.detail-row>i {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-brand-light);
+  color: var(--color-brand-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  transition: transform 220ms ease;
+}
+
+.detail-row:hover>i {
+  transform: scale(1.08);
+}
+
+.detail-row>div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.detail-row .label {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-light);
+  font-weight: 600;
+}
+
+.detail-row span:not(.label) {
+  font-size: var(--text-base);
+  color: var(--color-text-base);
+  font-weight: 500;
+}
+
+/* ── Fallback ────────────────────────────────────────── */
+.profile-card:has(> i) {
+  text-align: center;
+  padding: 4rem 2.5rem;
+}
+
+.profile-card>i {
+  font-size: 3rem;
+  color: #ef4444;
+  background-color: rgba(239, 68, 68, 0.08);
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  transition: transform 220ms ease;
+}
+
+.profile-card:hover>i {
+  transform: scale(1.05);
+}
+
+.profile-card>h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #ef4444;
+}
+
+.profile-card>p {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+
+
+/* ── Responsive ──────────────────────────────────────── */
+@media (max-width: 700px) {
+  .profile-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-card {
+    max-width: 100%;
+  }
+}

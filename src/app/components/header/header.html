@@ -1,0 +1,91 @@
+<header class="top-0 z-50 border-b border-surface-border bg-surface/95 backdrop-blur">
+  <div class="mx-auto flex max-w-full items-center justify-between px-6 py-3">
+    <!-- Logo / App Name -->
+    <a
+      routerLink="/main/home"
+      class="text-2xl font-bold font-display text-brand hover:text-brand-dark"
+    >
+      ShopVerse
+    </a>
+
+    <!-- Navigation -->
+    <nav class="hidden md:flex items-center gap-8">
+      <a
+        routerLink="/main/home"
+        class="font-medium text-text-base hover:text-brand transition-colors"
+      >
+        Home
+      </a>
+      <a
+        routerLink="/main/shop"
+        class="font-medium text-text-base hover:text-brand transition-colors"
+      >
+        Shop
+      </a>
+    </nav>
+
+    <!-- Right Actions -->
+    <div class="flex items-center gap-3">
+      <!-- Cart Button -->
+      <a
+        routerLink="/main/cart"
+        class="relative flex h-11 w-11 items-center justify-center rounded-full border border-surface-border bg-surface hover:bg-brand-light transition"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5 text-text-base"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-1 5h12M10 21a1 1 0 100-2 1 1 0 000 2zm8 0a1 1 0 100-2 1 1 0 000 2z"
+          />
+        </svg>
+
+        <!-- Dynamic Cart Badge -->
+        @if (cartService.getItemCount() > 0) {
+          <span
+            class="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-brand text-[10px] font-semibold text-white"
+          >
+            {{ cartService.getItemCount() }}
+          </span>
+        }
+      </a>
+
+      <!-- Profile Button (visible when logged in) -->
+      @if (authService.isLoggedIn()) {
+        <a
+          routerLink="/main/profile"
+          class="relative flex h-11 w-11 items-center justify-center rounded-full border border-surface-border bg-surface hover:bg-brand-light transition"
+          title="My Profile"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 text-text-base"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M5.121 17.804A8 8 0 1118.88 6.196M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+            />
+          </svg>
+        </a>
+      }
+
+      <!-- Login / Logout Button -->
+      @if (authService.isLoggedIn()) {
+        <a routerLink="/main/home" class="btn btn-primary" (click)="logout()">Logout</a>
+      } @else {
+        <a routerLink="/auth/login" class="btn btn-primary">Login</a>
+      }
+    </div>
+  </div>
+</header>

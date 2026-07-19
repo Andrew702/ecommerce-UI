@@ -1,0 +1,25 @@
+<div class="flex-1 overflow-auto" style="background-color: var(--color-surface-muted)">
+  <!-- Search Bar + Category Dropdown -->
+  <div class="flex justify-center px-6 py-4">
+    <div class="flex gap-3 w-full" style="max-width: 640px">
+      <input type="text" placeholder="Search products..." class="flex-1" (input)="Search($event)" />
+
+      <!-- Category dropdown -->
+      <div class="relative">
+        <select
+          (change)="change($any($event.target).value)"
+          class="btn-secondary"
+          style="appearance: none; padding-right: 2rem; cursor: pointer"
+        >
+          <option value="" selected>All Categories</option>
+          @for (cat of productService.categories(); track cat.id) {
+            <option [value]="cat.id">{{ cat.name }}</option>
+          }
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product List -->
+  <app-product-list></app-product-list>
+</div>
