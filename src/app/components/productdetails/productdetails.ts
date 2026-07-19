@@ -29,7 +29,7 @@ export class Productdetails {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.productService.GetProductById(id).subscribe({
       next: (data) => this.product.set(data),
-      error: (err) => console.error(err),
+      error: (err) => this.notify.error(err?.error?.detail || 'Failed to load product details'),
     });
   }
 

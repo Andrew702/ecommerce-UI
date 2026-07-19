@@ -3,13 +3,16 @@ import { inject, Injectable, signal } from '@angular/core';
 import { CartItem } from '../Models/ICartItem';
 import { AddToCartRequest, UpdateCartItemRequest } from '../Models/Auth';
 import { apiURL } from '../Models/api';
-import { tap } from 'rxjs';
+import { NotificationService } from './notification-service';
+import { Authservice } from './authservice';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
   http = inject(HttpClient);
+  notify = inject(NotificationService);
+  authService = inject(Authservice);
 
   cartItems = signal<CartItem[]>([]);
 
@@ -36,17 +39,20 @@ export class CartService {
   }
 
   loadCart() {
-    this.http.get<CartItem[]>(`${apiURL}/cart`).subscribe({
-      next: (items) => this.cartItems.set(items),
-      error: (err) => console.error('Error loading cart:', err),
+    this.http.get<CartItem[]>(`${apiURL}/Cart`).subscribe({
+      next: (items) => {
+        this.cartItems.set(items);
+        this.authService.cartItems.set(items);
+      },
+      error: (err) => this.notify.error(err?.error?.detail || 'Failed to load cart'),
     });
   }
 
   addToCart(productId: number, quantity: number = 1) {
     const body: AddToCartRequest = { productId, quantity };
-    this.http.post<CartItem>(`${apiURL}/cart/items`, body).subscribe({
+    this.http.post<CartItem>(`${apiURL}/Cart/items`, body).subscribe({
       next: () => this.loadCart(),
-      error: (err) => console.error('Error adding to cart:', err),
+      error: (err) => this.notify.error(err?.error?.detail || 'Failed to add item to cart'),
     });
   }
 
@@ -55,23 +61,26 @@ export class CartService {
       this.removeFromCart(itemId);
       return;
     }
-    this.http.put(`${apiURL}/cart/items/${itemId}`, { quantity } as UpdateCartItemRequest).subscribe({
+    this.http.put(`${apiURL}/Cart/items/${itemId}`, { quantity } as UpdateCartItemRequest).subscribe({
       next: () => this.loadCart(),
-      error: (err) => console.error('Error updating cart:', err),
+      error: (err) => this.notify.error(err?.error?.detail || 'Failed to update cart'),
     });
   }
 
   removeFromCart(itemId: number) {
-    this.http.delete(`${apiURL}/cart/items/${itemId}`).subscribe({
+    this.http.delete(`${apiURL}/Cart/items/${itemId}`).subscribe({
       next: () => this.loadCart(),
-      error: (err) => console.error('Error removing from cart:', err),
+      error: (err) => this.notify.error(err?.error?.detail || 'Failed to remove item from cart'),
     });
   }
 
   clearCart() {
-    this.http.delete(`${apiURL}/cart`).subscribe({
-      next: () => this.cartItems.set([]),
-      error: (err) => console.error('Error clearing cart:', err),
+    this.http.delete(`${apiURL}/Cart`).subscribe({
+      next: () => {
+        this.cartItems.set([]);
+        this.authService.cartItems.set([]);
+      },
+      error: (err) => this.notify.error(err?.error?.detail || 'Failed to clear cart'),
     });
   }
 }

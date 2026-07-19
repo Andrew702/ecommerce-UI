@@ -10,6 +10,10 @@ export interface Product {
   brandName: string;
   averageRating: number;
   reviewCount: number;
+  discountPercentage: number | null;
+  isOnSale: boolean;
+  stockQuantity: number;
+  isInStock: boolean;
   reviews: Review[];
 }
 

@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { Productcard } from '../productcard/productcard';
-import { Product } from '../../Models/IProduct';
 import { ProductService } from '../../services/product-service';
 
 @Component({
@@ -10,14 +9,4 @@ import { ProductService } from '../../services/product-service';
 })
 export class ProductList {
   productService = inject(ProductService);
-
-  ngOnInit() {
-    this.productService.GetAllProducts().subscribe({
-      next: (data) => {
-        this.productService.products.set(data);
-        console.log(this.productService.products());
-      },
-      error: (err) => console.error(err),
-    });
-  }
 }

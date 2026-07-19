@@ -32,11 +32,11 @@ export class Authservice {
   }
 
   register(request: RegisterRequest) {
-    return this.http.post<AuthResponse>(`${apiURL}/auth/register`, request);
+    return this.http.post<AuthResponse>(`${apiURL}/Auth/register`, request);
   }
 
   login(credentials: LoginRequest) {
-    return this.http.post<AuthResponse>(`${apiURL}/auth/login`, credentials);
+    return this.http.post<AuthResponse>(`${apiURL}/Auth/login`, credentials);
   }
 
   handleAuthResponse(response: AuthResponse) {

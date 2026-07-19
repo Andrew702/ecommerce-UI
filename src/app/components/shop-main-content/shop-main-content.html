@@ -1,24 +1,26 @@
 <div class="flex-1 overflow-auto" style="background-color: var(--color-surface-muted)">
-  <!-- Search Bar + Category Dropdown -->
+  <!-- Search Bar -->
   <div class="flex justify-center px-6 py-4">
     <div class="flex gap-3 w-full" style="max-width: 640px">
       <input type="text" placeholder="Search products..." class="flex-1" (input)="Search($event)" />
-
-      <!-- Category dropdown -->
-      <div class="relative">
-        <select
-          (change)="change($any($event.target).value)"
-          class="btn-secondary"
-          style="appearance: none; padding-right: 2rem; cursor: pointer"
-        >
-          <option value="" selected>All Categories</option>
-          @for (cat of productService.categories(); track cat.id) {
-            <option [value]="cat.id">{{ cat.name }}</option>
-          }
-        </select>
-      </div>
     </div>
   </div>
+
+  <!-- Active filter summary bar -->
+  @if (productService.activeFilterCount() > 0) {
+    <div class="px-6 pb-3 flex flex-wrap items-center gap-2">
+      <span class="text-sm" style="color: var(--color-text-muted)">
+        {{ productService.filteredProducts().length }} of {{ productService.products().length }} products
+      </span>
+      <button
+        class="text-xs font-medium cursor-pointer"
+        style="color: var(--color-brand); background: none; border: none; padding: 2px 4px"
+        (click)="productService.clearFilters()"
+      >
+        Clear filters
+      </button>
+    </div>
+  }
 
   <!-- Product List -->
   <app-product-list></app-product-list>

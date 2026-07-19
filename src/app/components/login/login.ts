@@ -31,8 +31,8 @@ export class Login {
         this.router.navigate(['/']);
         this.notify.success('Logged In Successfully', 3000);
       },
-      error: () => {
-        this.notify.error('Invalid Email or Password');
+      error: (err) => {
+        this.notify.error(err?.error?.detail || 'Invalid email or password');
       },
     });
   }

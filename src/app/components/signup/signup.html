@@ -72,7 +72,13 @@
 
         @if (signupForm.controls.password.dirty && signupForm.controls.password.invalid) {
           <p class="mt-1" style="font-size: var(--text-xs); color: #ef4444">
-            Password must be at least 6 characters
+            @if (signupForm.controls.password.errors?.['minlength']) {
+              Password must be at least 6 characters
+            } @else if (signupForm.controls.password.errors?.['pattern']) {
+              Password must contain at least one uppercase letter and one digit
+            } @else if (signupForm.controls.password.errors?.['required']) {
+              Password is required
+            }
           </p>
         }
       </div>
